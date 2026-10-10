@@ -1,0 +1,145 @@
+{
+  "publicPr": "https://github.com/Gryt-chat/client/pull/822",
+  "head": "93b05af9d062a502110cb5dc686eebe37a48083f",
+  "publicLocaleKeys": 506,
+  "browser": "153.0.8010.12",
+  "screenshots": [
+    {
+      "file": "en-welcome.png",
+      "caption": "English guest welcome, production Web build",
+      "surface": "production",
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sha256": "14b4a0203dedca1bf5907f7f9632f6b9c4d7159514b3bf50155bcdd64d88dfaa"
+    },
+    {
+      "file": "en-language-settings.png",
+      "caption": "English Appearance / Display language selector, production Web build",
+      "surface": "production",
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sha256": "0c2caaa0d2837b16e7a46280a82fcf8f7182928140def3cfaf5608bf607284ed"
+    },
+    {
+      "file": "zh-CN-language-settings.png",
+      "caption": "Same open production settings after using the real language selector",
+      "surface": "production",
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sha256": "06ccf6fc95de66c059d695557d84f175f79292e9f66ec5bb30dca71cc8d74679"
+    },
+    {
+      "file": "zh-CN-welcome.png",
+      "caption": "Simplified Chinese guest welcome, same production Web build",
+      "surface": "production",
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sha256": "2a0778c16710ebfbccb5a53f4df40e50da4c461ae1cbda3d7708145713aee3ef"
+    },
+    {
+      "file": "zh-CN-open-invite.png",
+      "caption": "Public source harness: open invitation and retained local error in Chinese",
+      "surface": "public component harness",
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sha256": "c698a46efd5afe9229dfcff1ca2f5ca247f80fddf0f6b6549d39c1d2d056bd0d"
+    },
+    {
+      "file": "en-open-invite.png",
+      "caption": "Same already-open public harness dialog after the storage event; user server name unchanged",
+      "surface": "public component harness",
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sha256": "cc5fc12a4b81bd043fe07596fd2863f26131f515b482665584622cebf1ebbbeb"
+    },
+    {
+      "file": "zh-CN-missing-key-fallback.png",
+      "caption": "Controlled missing Chinese key in the public harness falls back to English Accept invite",
+      "surface": "public component harness; deliberate in-memory missing-key fixture",
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "sha256": "cfddbea9ad2f441279656f0263772de3c6a8f65219d96c483eec8c3c1f373e76"
+    },
+    {
+      "file": "zh-CN-blocked-storage-narrow.png",
+      "caption": "Narrow public harness: blocked storage still permits a session-only Chinese switch",
+      "surface": "public component harness; blocked-storage fixture",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "sha256": "834c3f861565e595356f1700ddda5e052d0838a37619ceebcf96042d4c6800bd"
+    }
+  ],
+  "cases": [
+    {
+      "name": "production live selector",
+      "status": "passed",
+      "observed": "English -> Simplified Chinese; html.lang=zh-CN; stored preference=zh-CN; fixture identity unchanged"
+    },
+    {
+      "name": "production reload persistence",
+      "status": "passed",
+      "observed": "Chinese selection persists after reload; same selector shows Simplified Chinese"
+    },
+    {
+      "name": "public open-dialog storage event",
+      "status": "passed",
+      "observed": "Dialog and retained error change Chinese -> English while user server name stays unchanged"
+    },
+    {
+      "name": "public runtime missing-key fallback fixture",
+      "status": "passed",
+      "observed": "Removing invite.accept only from the in-memory Chinese resource returns English Accept invite while the dialog title stays Chinese; source files unchanged"
+    },
+    {
+      "name": "unsupported system and blocked storage fixture",
+      "status": "passed",
+      "observed": "Japanese system falls back to English; blocked-write Chinese selection works for the session; reload returns to system fallback"
+    }
+  ],
+  "network": {
+    "mockedExternalRequests": 15
+  },
+  "hardware": {
+    "getUserMedia": 0,
+    "getDisplayMedia": 0,
+    "enumerateDevices": 2
+  },
+  "limitations": [
+    "Web build and isolated mocked guest/harness only",
+    "No real media, call, native PTT, OS IME, or Electron launch acceptance",
+    "Initial partial migration; untranslated areas remain as documented at this public head"
+  ],
+  "productionPageErrors": [],
+  "cleanExactHeadSource": true,
+  "mediaStubCounterScope": "Counters from the production page after reload; all contexts replaced media methods with fixtures (enumeration returns an empty list).",
+  "verification": {
+    "sourceStatus": "clean detached checkout at exact PR head",
+    "completedAtUtc": "2026-10-10T07:25:44.8727170Z",
+    "localeCheck": "passed: 506 matching keys and preference/fallback/interpolation/plural checks",
+    "dependencyPreparation": "Copied independent dependency tree; published @gryt/voice 0.6.2 verified against yarn.lock. No frozen install was executed.",
+    "node": "24.10.0",
+    "webBuild": "passed: yarn build (tsc -b && vite build)",
+    "freshFullSuiteRun": false
+  },
+  "cleanup": {
+    "browser": "await browser.close() completed in finally",
+    "ownListenPorts4797And4798": 0,
+    "matchingOwnNodeViteProcesses": 0
+  }
+}
